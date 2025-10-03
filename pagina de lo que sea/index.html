@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Juegos Desconocidos - Comunidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🎮 Juegos Desconocidos</h1>
+            <button class="btn" onclick="abrirModalPublicar()">+ Publicar Juego</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="total-juegos">0</div>
+                <div class="stat-label">Juegos Publicados</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="total-comentarios">0</div>
+                <div class="stat-label">Comentarios</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="total-likes">0</div>
+                <div class="stat-label">Likes Totales</div>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="busqueda" placeholder="🔍 Buscar juegos por título, género o descripción..." oninput="buscarJuegos()">
+        </div>
+
+        <div id="alert" class="alert"></div>
+
+        <div class="juegos-grid" id="juegos-container">
+            <div class="empty-state">
+                <h2>🎲</h2>
+                <p>¡Aún no hay juegos publicados!</p>
+                <p style="font-size: 16px; margin-top: 15px;">Sé el primero en compartir un juego desconocido</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Publicar Juego -->
+    <div id="modalPublicar" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('modalPublicar')">&times;</span>
+            <h2 style="margin-bottom: 25px; color: #333;">🎮 Publicar Juego Desconocido</h2>
+            <form id="form-juego">
+                <div class="form-group">
+                    <label>Tu nombre:</label>
+                    <input type="text" id="autor-nombre" required placeholder="¿Cómo te llamas?">
+                </div>
+                <div class="form-group">
+                    <label>Título del juego:</label>
+                    <input type="text" id="titulo" required placeholder="Nombre del juego">
+                </div>
+                <div class="form-group">
+                    <label>Descripción:</label>
+                    <textarea id="descripcion" required placeholder="Cuéntanos sobre este juego desconocido..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Plataforma:</label>
+                    <select id="plataforma" required>
+                        <option value="">Selecciona una plataforma...</option>
+                        <option value="PC">💻 PC</option>
+                        <option value="PlayStation">🎮 PlayStation</option>
+                        <option value="Xbox">🎮 Xbox</option>
+                        <option value="Nintendo">🎮 Nintendo</option>
+                        <option value="Móvil">📱 Móvil</option>
+                        <option value="Retro">👾 Retro/Consola Antigua</option>
+                        <option value="Arcade">🕹️ Arcade</option>
+                        <option value="Otra">🎯 Otra</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Género:</label>
+                    <input type="text" id="genero" placeholder="RPG, Aventura, Puzzle, Terror, etc.">
+                </div>
+                <div class="form-group">
+                    <label>Año (opcional):</label>
+                    <input type="number" id="año" min="1970" max="2025" placeholder="¿En qué año salió?">
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Publicar Juego</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Ver Juego -->
+    <div id="modalJuego" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('modalJuego')">&times;</span>
+            <div id="detalles-juego"></div>
+            <div class="comentarios-section">
+                <h3>💬 Comentarios y Opiniones</h3>
+                <form id="form-comentario" style="margin: 20px 0;">
+                    <div class="form-group">
+                        <label>Tu nombre:</label>
+                        <input type="text" id="comentario-usuario" required placeholder="¿Cómo te llamas?">
+                    </div>
+                    <div class="form-group">
+                        <label>Calificación:</label>
+                        <select id="calificacion">
+                            <option value="5">⭐⭐⭐⭐⭐ Obra maestra (5)</option>
+                            <option value="4">⭐⭐⭐⭐ Muy bueno (4)</option>
+                            <option value="3">⭐⭐⭐ Bueno (3)</option>
+                            <option value="2">⭐⭐ Regular (2)</option>
+                            <option value="1">⭐ Malo (1)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tu opinión:</label>
+                        <textarea id="comentario-texto" required placeholder="Comparte tu experiencia con este juego..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">💬 Enviar Comentario</button>
+                </form>
+                <div id="comentarios-lista"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="java.js"></script>
+</body>
+       
